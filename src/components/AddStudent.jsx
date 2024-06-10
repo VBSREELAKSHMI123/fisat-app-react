@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from './NavBar'
+import axios from 'axios'
 
 const AddStudent = () => {
     const [data,setData]=useState(
@@ -19,7 +20,21 @@ const AddStudent = () => {
     }
     const readValue=()=>{
         console.log(data)
+       axios.post("https://courseapplogix.onrender.com/addstudents",data).then(
+        (response) => {
+            console.log(response.data)
+            if (response.data.status == "success")
+                {
+                    alert("successful")
+                
+            } else {
+                alert("failed")
+                
+            }
+        }
+       ).catch()
     }
+
   return (
     <div>
         <NavBar/>
